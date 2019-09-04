@@ -7,8 +7,8 @@ cd frontend
 call npm install -y
 start ng serve --open
 
-echo "start mongo database
-start c:\\Program Files\\MongoDB\\Server\\4.2\\bin\\monogod
+echo "start mongo database"
+start /D "c:\Program Files\MongoDB\Server\4.2\bin\" mongod.exe
 
 echo "install and start backend server"
 cd ../backend
