@@ -1,0 +1,3 @@
+[submodule "hospital-chargemaster"]
+	path = hospital-chargemaster
+	url = https://github.com/vsoch/hospital-chargemaster.git

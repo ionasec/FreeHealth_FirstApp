@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-var Issue = require('./models/issue.js');
+//var Issue = require('./models/issue.js');
+var Hospitals = require('./models/hospitals.js');
 //const IssueModel = issue.IssueModel;
 
 //var instance = new issue( {title: 'test'},{responsible: 'me'});
@@ -13,12 +14,68 @@ const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/issues');
+mongoose.connect('mongodb://localhost:27017/hospital-chargemaster');
 const connection = mongoose.connection;
+
 connection.once('open', () => {
-    console.log('connetion to Mongo successfull');
+    console.log('connetion to Mongo successfull hospital-chargemaster');
+    
+   /* Admin = mongoose.mongo.Admin;
+    new Admin(connection.db).listDatabases(function(err, result) {
+        console.log('listDatabases succeeded');
+        // database list stored in result.databases
+        var allDatabases = result.databases;    
+        console.log(allDatabases);
+    });
+*/
+    
+    
+   // var schema = new mongoose.Schema({ name: 'string', id: 'string', url: 'string' });
+  //  var hospitals_collection = Hospitals;
+
+    // Create an instance of model SomeModel
+  /*  var awesome_instance = new hospitals_collection({ name: 'neeww esntr awwefesome' });
+        // Save the new model instance, passing a callback
+    awesome_instance.save(function (err) {
+    if (err) return handleError(err);
+    // saved!
+    });
+    
+    var awesome_instance = new hospitals_collection({ name: 'awwefesome' });
+    // Save the new model instance, passing a callback
+    awesome_instance.save(function (err) {
+    if (err) return handleError(err);
+    // saved!
+    });
+
+    hospitals_collection.find((err, hospital) => {
+        if(err)
+            console.log(err);
+        else
+        {
+            //res.json(hospital);
+            console.log(`backend:finding hospitals in DB ${hospital.collection},${hospital.length}, ${hospital}`);
+        }
+    });*/
+
 });
 
+
+router.route('/hospitals').get((req,res) => {
+    
+ 
+    Hospitals.find((err, hospital) => {
+        if(err)
+            console.log(err);
+        else
+        {
+            res.json(hospital);
+            //console.log(`backend:finding hospitals in DB ${hospital.length}, ${hospital}`);
+        }
+    });
+});
+
+/*
 router.route('/issues').get((req,res) => {
     Issue.find((err, issues) => {
         if(err)
@@ -73,6 +130,8 @@ router.route('/issues/update/:id').post((req,res) => {
         }
     });
 })
+
+*/
 
 app.use('/', router);
 

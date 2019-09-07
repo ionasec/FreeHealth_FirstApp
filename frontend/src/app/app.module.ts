@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './components/list/list.component';
 import { EditComponent } from './components/edit/edit.component';
 import { IssueService } from './issue.service';
+import { HospitalService } from './hospital.service';
 
 const routes: Routes = [
   { path: 'edit/:id', component: EditComponent},
@@ -45,7 +46,7 @@ const routes: Routes = [
     ReactiveFormsModule
     
   ],
-  providers: [IssueService],
+  providers: [HospitalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
